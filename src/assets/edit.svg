@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44.22 44.22">
+    <defs>
+        <style>.cls-1{fill:none;stroke:#898989;stroke-linecap:round;stroke-linejoin:round;stroke-width:3px;}</style>
+    </defs>
+    <title>edit-icon</title>
+    <g id="Слой_2" data-name="Слой 2">
+        <g id="Layer_1" data-name="Layer 1">
+            <g id="Edit">
+                <path id="Base" class="cls-1"
+                      d="M40.94,11.88,14.4,38.42,1.5,42.72l4.3-12.9L32.34,3.28a6.09,6.09,0,0,1,8.6,0h0A6.07,6.07,0,0,1,40.94,11.88Z"/>
+                <line id="Divider" class="cls-1" x1="28.22" y1="7.87" x2="36.22" y2="15.87"/>
+            </g>
+        </g>
+    </g>
+</svg>
