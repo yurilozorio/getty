@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "Saudade das antigas"
+    },
+    {
+      "id": 2,
+      "username": "teste"
+    }
+  ],
+  "tweets": [
+    {
+      "id": 1,
+      "tweet": "Papercut",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "tweet": "Papercut",
+      "userId": 1
+    }
+  ]
+}

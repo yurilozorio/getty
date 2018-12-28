@@ -33,5 +33,9 @@ export const Form = styled.form`
     font-weight: bold;
     border-radius: 3px;
     cursor: pointer;
+
+    &:hover {
+      background: #3e91c3;
+    }
   }
 `;
