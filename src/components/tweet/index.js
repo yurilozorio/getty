@@ -6,25 +6,27 @@ import Delete from "../../assets/delete.svg";
 
 import { Container, Buttons } from "./styles";
 
-const Tweet = () => (
-  <Container>
-    <strong>Teste</strong>
-    <p>teste</p>
-    <Buttons>
-      <button type="button" /*onClick={this.handleLike}*/>
-        <img src={Like} alt="Like" />
-        10
-      </button>
-      <button type="button" /*onClick={this.handleLike}*/>
-        <img src={Edit} alt="Like" />
-        Editar
-      </button>
-      <button type="button" /*onClick={this.handleLike}*/>
-        <img src={Delete} alt="Like" />
-        Excluir
-      </button>
-    </Buttons>
-  </Container>
-);
+const Tweet = props => {
+  const { tweet } = props;
+  return (
+    <Container>
+      <p>{tweet.content}</p>
+      <Buttons>
+        <button type="button">
+          <img src={Like} alt="Like" />
+          {tweet.likes}
+        </button>
+        <button type="button">
+          <img src={Edit} alt="Like" />
+          Editar
+        </button>
+        <button type="button">
+          <img src={Delete} alt="Like" />
+          Excluir
+        </button>
+      </Buttons>
+    </Container>
+  );
+};
 
 export default Tweet;

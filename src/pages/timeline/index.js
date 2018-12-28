@@ -1,26 +1,26 @@
 import React, { Component } from "react";
 
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Creators as UsersActions } from "../../store/ducks/users";
+import { Creators as TweetsActions } from "../../store/ducks/tweets";
+
 import twitterlogo from "../../assets/twitter.svg";
 
 import Tweet from "../../components/tweet";
 
 import { Container, Form, TweetList } from "./styles";
 
-export default class Timeline extends Component {
-  state = {
-    tweets: [],
-    newTweet: ""
-  };
+class Timeline extends Component {
+  state = {};
 
   componentDidMount() {
-    /* this.subscribeToEvent();
-
-    const response = await api.get('tweets')
-    this.setState({tweets: response.data}) */
+    this.props.getTweetsRequest(this.props.users.userLogado.id);
   }
 
   handleInputChange = event => {
     this.setState({ newTweet: event.target.value });
+    console.log(this.props.tweets.data);
   };
 
   handleNewTweet = async e => {
@@ -34,7 +34,7 @@ export default class Timeline extends Component {
     return (
       <Container>
         <img height={24} src={twitterlogo} alt="GoTwitter" />
-
+        <h1>Tweets do {this.props.users.userLogado.username}</h1>
         <Form>
           <textarea
             value={this.state.newTweet}
@@ -44,16 +44,30 @@ export default class Timeline extends Component {
           />
         </Form>
         <TweetList>
-          {/*this.state.tweets.map(tweet => (
-            <Tweet key={tweet._id} tweet={tweet} />
-          ))*/}
-
-          <Tweet />
-          <Tweet />
-          <Tweet />
-          <Tweet />
+          {this.props.tweets.data.map(tweet => (
+            <Tweet key={tweet.id} tweet={tweet} />
+          ))}
         </TweetList>
       </Container>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  users: state.users,
+  tweets: state.tweets
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      ...UsersActions,
+      ...TweetsActions
+    },
+    dispatch
+  );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Timeline);

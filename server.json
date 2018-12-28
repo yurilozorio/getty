@@ -1,23 +1,53 @@
 {
   "users": [
     {
-      "id": 1,
-      "username": "Saudade das antigas"
+      "username": "User 1",
+      "id": 1
     },
     {
-      "id": 2,
-      "username": "teste"
+      "username": "User 2",
+      "id": 2
+    },
+    {
+      "username": "User 3",
+      "id": 3
+    },
+    {
+      "username": "User 4",
+      "id": 4
+    },
+    {
+      "username": "User 5",
+      "id": 5
+    },
+    {
+      "username": "User 6",
+      "id": 6
+    },
+    {
+      "username": "User 7",
+      "id": 7
+    },
+    {
+      "username": "User 8",
+      "id": 8
+    },
+    {
+      "username": "User 9",
+      "id": 9
     }
   ],
   "tweets": [
     {
       "id": 1,
-      "tweet": "Papercut",
+      "content": "teste",
+      "likes": 10,
       "userId": 1
     },
     {
       "id": 2,
-      "tweet": "Papercut",
+      "content": "testeee",
+      "likes": 6,
       "userId": 1
     }
   ]

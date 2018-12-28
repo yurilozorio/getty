@@ -13,17 +13,25 @@ export const Form = styled.form`
   max-width: 400px;
   display: flex;
 
+  select {
+    width: 240px;
+    height: 45px;
+    padding: 0 20px;
+    font-size: 18px;
+    color: #444;
+  }
+
   input {
-    flex: 1;
-    height: 55px;
+    width: 240px;
+    height: 45px;
     padding: 0 20px;
     font-size: 18px;
     color: #444;
   }
 
   button {
-    width: 120px;
-    height: 55px;
+    width: 140px;
+    height: 45px;
     padding: 0 20px;
     margin-left: 10px;
     background: #4bb0ee;

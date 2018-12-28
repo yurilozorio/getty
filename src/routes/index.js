@@ -8,7 +8,7 @@ import Timeline from "../pages/timeline";
 const Routes = () => (
   <Switch>
     <Route exact path="/" component={Login} />
-    <Route exact path="/timeline" component={Timeline} />
+    <Route path="/timeline" component={Timeline} />
   </Switch>
 );
 
