@@ -26,6 +26,7 @@ export const Form = styled.form`
 `;
 
 export const TweetList = styled.ul`
+  width: 100%;
   list-style: none;
   color: #1c2022;
 `;

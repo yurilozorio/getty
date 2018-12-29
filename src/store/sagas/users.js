@@ -23,10 +23,10 @@ export function* postUser(action) {
   }
 }
 
-export function* getUser(action) {
+export function getUser(action) {
   try {
-    yield put(UsersActions.getUserLogado(action.payload.data.user));
+    put(UsersActions.getUserLogado(action.payload.data.user));
   } catch (err) {
-    console.log(err);
+    return;
   }
 }

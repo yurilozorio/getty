@@ -45,10 +45,22 @@
       "userId": 1
     },
     {
-      "id": 2,
-      "content": "testeee",
-      "likes": 6,
-      "userId": 1
+      "content": "aaa",
+      "likes": 62,
+      "userId": 3,
+      "id": 9
+    },
+    {
+      "content": "arroz",
+      "likes": 18,
+      "userId": 2,
+      "id": 13
+    },
+    {
+      "content": "a",
+      "likes": 44,
+      "userId": 7,
+      "id": 14
     }
   ]
 }

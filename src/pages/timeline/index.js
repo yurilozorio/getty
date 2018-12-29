@@ -12,23 +12,38 @@ import Tweet from "../../components/tweet";
 import { Container, Form, TweetList } from "./styles";
 
 class Timeline extends Component {
-  state = {};
+  state = {
+    newTweet: ""
+  };
 
   componentDidMount() {
     this.props.getTweetsRequest(this.props.users.userLogado.id);
   }
 
+  componentWillMount() {
+    if (!this.props.users.userLogado.id) {
+      this.props.history.push("/");
+    }
+  }
+
   handleInputChange = event => {
     this.setState({ newTweet: event.target.value });
-    console.log(this.props.tweets.data);
   };
 
-  handleNewTweet = async e => {
-    if (e.keyCode !== 13) return;
+  handleNewTweet = async event => {
+    if (event.keyCode !== 13) return;
+    event.preventDefault();
 
-    const content = this.state.newTweet;
+    if (event.target.value.length < 1) return;
 
-    console.log(content);
+    const tweet = {
+      content: this.state.newTweet,
+      likes: Math.floor(Math.random() * 100),
+      userId: this.props.users.userLogado.id
+    };
+
+    this.props.postTweetRequest(tweet);
+    this.setState({ newTweet: "" });
   };
   render() {
     return (
@@ -37,6 +52,7 @@ class Timeline extends Component {
         <h1>Tweets do {this.props.users.userLogado.username}</h1>
         <Form>
           <textarea
+            rows="1"
             value={this.state.newTweet}
             onChange={this.handleInputChange}
             onKeyDown={this.handleNewTweet}
