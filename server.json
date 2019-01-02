@@ -35,23 +35,19 @@
     {
       "username": "User 9",
       "id": 9
+    },
+    {
+      "username": "teste",
+      "id": 10
+    },
+    {
+      "username": "rytwrtw",
+      "id": 11
     }
   ],
   "tweets": [
     {
-      "id": 1,
-      "content": "teste",
-      "likes": 10,
-      "userId": 1
-    },
-    {
-      "content": "aaa",
-      "likes": 62,
-      "userId": 3,
-      "id": 9
-    },
-    {
-      "content": "arroz",
+      "content": "arroz2",
       "likes": 18,
       "userId": 2,
       "id": 13
@@ -61,6 +57,36 @@
       "likes": 44,
       "userId": 7,
       "id": 14
+    },
+    {
+      "content": "asda",
+      "likes": 72,
+      "userId": 3,
+      "id": 15
+    },
+    {
+      "id": 16,
+      "content": "testeaa",
+      "likes": 76,
+      "userId": 1
+    },
+    {
+      "id": 17,
+      "content": "aaassssss,",
+      "likes": 69,
+      "userId": 1
+    },
+    {
+      "id": 18,
+      "content": "sgsdgsdgsewew",
+      "likes": 37,
+      "userId": 11
+    },
+    {
+      "content": "dasdasdsa",
+      "likes": 34,
+      "userId": 10,
+      "id": 19
     }
   ]
 }

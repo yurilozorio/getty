@@ -12,28 +12,76 @@ import Delete from "../../assets/delete.svg";
 import { Container, Buttons } from "./styles";
 
 class Tweet extends Component {
-  deletar = id => {
-    this.props.delTweetRequest(id);
+  state = {
+    editMode: false,
+    editedContent: this.props.tweet.content,
+    id: this.props.tweet.id,
+    content: this.props.tweet.content,
+    likes: this.props.tweet.likes,
+    userId: this.props.tweet.userId
+  };
+
+  deletar = () => {
+    this.props.delTweetRequest(this.state.id);
+  };
+
+  editar = () => {
+    this.setState({ editMode: true });
+  };
+
+  handleInputChange = event => {
+    this.setState({ editedContent: event.target.value });
+  };
+
+  handleEditTweet = async event => {
+    if (event.keyCode !== 13) return;
+    event.preventDefault();
+
+    if (event.target.value.length < 1) return;
+
+    const editedTweet = {
+      id: this.state.id,
+      content: this.state.editedContent,
+      likes: this.state.likes,
+      userId: this.state.userId
+    };
+
+    this.props.putTweetRequest(editedTweet);
+    this.setState({ content: this.state.editedContent });
+    this.setState({ editMode: false });
+  };
+
+  blur = event => {
+    this.setState({ editedContent: this.state.content });
+    this.setState({ editMode: false });
   };
 
   render() {
     return (
       <Container>
-        <p>{this.props.tweet.content}</p>
+        {this.state.editMode ? (
+          <textarea
+            rows="1"
+            value={this.state.editedContent}
+            onChange={this.handleInputChange}
+            onKeyDown={this.handleEditTweet}
+            autoFocus
+            onBlur={this.blur}
+          />
+        ) : (
+          <p id="content">{this.state.content}</p>
+        )}
         <Buttons>
           <button type="button">
             <img src={Like} alt="Like" />
-            {this.props.tweet.likes}
+            {this.state.likes}
           </button>
-          <button type="button">
-            <img src={Edit} alt="Like" />
+          <button type="button" onClick={this.editar}>
+            <img src={Edit} alt="Edit" />
             Editar
           </button>
-          <button
-            type="button"
-            onClick={() => this.deletar(this.props.tweet.id)}
-          >
-            <img src={Delete} alt="Like" />
+          <button type="button" onClick={this.deletar}>
+            <img src={Delete} alt="Delete" />
             Excluir
           </button>
         </Buttons>

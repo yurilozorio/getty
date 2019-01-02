@@ -6,6 +6,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  h1 {
+    color: #4bb0ee;
+  }
 `;
 
 export const Form = styled.form`

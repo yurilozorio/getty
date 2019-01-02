@@ -27,6 +27,20 @@ export function* postTweet(action) {
   }
 }
 
+export function* putTweet(action) {
+  try {
+    let response = yield call(
+      api.put,
+      `/tweets/${action.payload.data.id}`,
+      action.payload.data
+    );
+
+    yield put(TweetsActions.putTweetSuccess(response.data));
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 export function* delTweet(action) {
   try {
     yield call(api.delete, `/tweets/${action.payload.id}`);

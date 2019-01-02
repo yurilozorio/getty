@@ -16,6 +16,15 @@ export const Container = styled.li`
     font-size: 14px;
     line-height: 20px;
   }
+
+  textarea {
+    border: 3px solid #d8e5ed;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 15px;
+    width: 100%;
+    resize: none;
+  }
 `;
 
 export const Buttons = styled.div`

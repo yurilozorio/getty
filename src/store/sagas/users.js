@@ -22,11 +22,3 @@ export function* postUser(action) {
     console.log(err);
   }
 }
-
-export function getUser(action) {
-  try {
-    put(UsersActions.getUserLogado(action.payload.data.user));
-  } catch (err) {
-    return;
-  }
-}
