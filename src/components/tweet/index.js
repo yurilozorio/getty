@@ -1,24 +1,36 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { Creators as UsersActions } from "../../store/ducks/users";
-import { Creators as TweetsActions } from "../../store/ducks/tweets";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Creators as UsersActions } from '../../store/ducks/users';
+import { Creators as TweetsActions } from '../../store/ducks/tweets';
 
-import Like from "../../assets/like.svg";
-import Edit from "../../assets/edit.svg";
-import Delete from "../../assets/delete.svg";
+import Like from '../../assets/like.svg';
+import Edit from '../../assets/edit.svg';
+import Delete from '../../assets/delete.svg';
 
-import { Container, Buttons } from "./styles";
+import { Container, Buttons } from './styles';
 
 class Tweet extends Component {
+  static propTypes = {
+    tweet: PropTypes.shape({
+      id: PropTypes.number,
+      content: PropTypes.string,
+      likes: PropTypes.number,
+      userId: PropTypes.number,
+    }).isRequired,
+    delTweetRequest: PropTypes.func.isRequired,
+    putTweetRequest: PropTypes.func.isRequired,
+  };
+
   state = {
     editMode: false,
     editedContent: this.props.tweet.content,
     id: this.props.tweet.id,
     content: this.props.tweet.content,
     likes: this.props.tweet.likes,
-    userId: this.props.tweet.userId
+    userId: this.props.tweet.userId,
   };
 
   deletar = () => {
@@ -29,11 +41,11 @@ class Tweet extends Component {
     this.setState({ editMode: true });
   };
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     this.setState({ editedContent: event.target.value });
   };
 
-  handleEditTweet = async event => {
+  handleEditTweet = async (event) => {
     if (event.keyCode !== 13) return;
     event.preventDefault();
 
@@ -43,16 +55,16 @@ class Tweet extends Component {
       id: this.state.id,
       content: this.state.editedContent,
       likes: this.state.likes,
-      userId: this.state.userId
+      userId: this.state.userId,
     };
 
     this.props.putTweetRequest(editedTweet);
-    this.setState({ content: this.state.editedContent });
+    this.setState(prevState => ({ content: prevState.editedContent }));
     this.setState({ editMode: false });
   };
 
-  blur = event => {
-    this.setState({ editedContent: this.state.content });
+  handleBlur = () => {
+    this.setState(prevState => ({ editedContent: prevState.content }));
     this.setState({ editMode: false });
   };
 
@@ -66,7 +78,7 @@ class Tweet extends Component {
             onChange={this.handleInputChange}
             onKeyDown={this.handleEditTweet}
             autoFocus
-            onBlur={this.blur}
+            onBlur={this.handleBlur}
           />
         ) : (
           <p id="content">{this.state.content}</p>
@@ -92,19 +104,18 @@ class Tweet extends Component {
 
 const mapStateToProps = state => ({
   users: state.users,
-  tweets: state.tweets
+  tweets: state.tweets,
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      ...UsersActions,
-      ...TweetsActions
-    },
-    dispatch
-  );
+const mapDispatchToProps = dispatch => bindActionCreators(
+  {
+    ...UsersActions,
+    ...TweetsActions,
+  },
+  dispatch,
+);
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Tweet);

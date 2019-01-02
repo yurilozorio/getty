@@ -1,15 +1,15 @@
 export const Types = {
-  GET_REQUEST: "users/GET_REQUEST",
-  GET_SUCCESS: "users/GET_SUCCESS",
-  POST_REQUEST: "users/POST_REQUEST",
-  POST_SUCCESS: "users/POST_SUCCESS",
-  GET_USER: "users/GET_USER"
+  GET_REQUEST: 'users/GET_REQUEST',
+  GET_SUCCESS: 'users/GET_SUCCESS',
+  POST_REQUEST: 'users/POST_REQUEST',
+  POST_SUCCESS: 'users/POST_SUCCESS',
+  GET_USER: 'users/GET_USER',
 };
 
 const INITIAL_STATE = {
   userLogado: {},
   data: [],
-  loading: false
+  loading: false,
 };
 
 export default function users(state = INITIAL_STATE, action) {
@@ -34,26 +34,26 @@ export default function users(state = INITIAL_STATE, action) {
 
 export const Creators = {
   getUsersRequest: () => ({
-    type: Types.GET_REQUEST
+    type: Types.GET_REQUEST,
   }),
 
   getUsersSuccess: data => ({
     type: Types.GET_SUCCESS,
-    payload: { data }
+    payload: { data },
   }),
 
   postUserRequest: data => ({
     type: Types.POST_REQUEST,
-    payload: { data }
+    payload: { data },
   }),
 
   postUserSuccess: data => ({
     type: Types.POST_SUCCESS,
-    payload: { data }
+    payload: { data },
   }),
 
   getUserLogado: user => ({
     type: Types.GET_USER,
-    payload: { user }
-  })
+    payload: { user },
+  }),
 };

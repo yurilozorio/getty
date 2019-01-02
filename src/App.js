@@ -6,24 +6,25 @@ import "./config/reactotron";
 import store from "./store";
 import Routes from "./routes";
 
+import ErrorBox from "./components/errorBox";
+
 import GlobalStyles from "./styles/global";
 import { Wrapper, Container, Content } from "./styles/components";
 
-const App = () => {
-  return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <Wrapper>
-          <GlobalStyles />
-          <Container>
-            <Content>
-              <Routes />
-            </Content>
-          </Container>
-        </Wrapper>
-      </BrowserRouter>
-    </Provider>
-  );
-};
+const App = () => (
+  <Provider store={store}>
+    <BrowserRouter>
+      <Wrapper>
+        <GlobalStyles />
+        <Container>
+          <ErrorBox />
+          <Content>
+            <Routes />
+          </Content>
+        </Container>
+      </Wrapper>
+    </BrowserRouter>
+  </Provider>
+);
 
 export default App;

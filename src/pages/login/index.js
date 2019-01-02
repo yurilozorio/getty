@@ -1,40 +1,54 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { Creators as UsersActions } from "../../store/ducks/users";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Creators as UsersActions } from '../../store/ducks/users';
 
-import twitterlogo from "../../assets/logo.svg";
+import twitterlogo from '../../assets/logo.svg';
 
-import { Container, Form } from "./styles";
+import { Container, Form } from './styles';
 
 class Login extends Component {
+  static propTypes = {
+    getUsersRequest: PropTypes.func.isRequired,
+    users: PropTypes.shape({
+      data: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number,
+          find: PropTypes.func,
+          map: PropTypes.func,
+        }),
+      ),
+    }).isRequired,
+    postUserRequest: PropTypes.func.isRequired,
+    getUserLogado: PropTypes.func.isRequired,
+  };
+
   state = {
     userLogado: {},
     userSelected: false,
-    username: ""
+    username: '',
   };
 
   componentDidMount() {
     this.props.getUsersRequest();
   }
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     this.setState({ username: event.target.value });
   };
 
-  handleSelectChange = event => {
+  handleSelectChange = (event) => {
     if (event.target.value < 0) return;
     this.setState({ userSelected: true });
     this.setState({
-      userLogado: this.props.users.data.find(
-        user => user.id === parseInt(event.target.value)
-      )
+      userLogado: this.props.users.data.find(user => user.id === parseInt(event.target.value, 10)),
     });
   };
 
-  salvar = event => {
+  salvar = (event) => {
     event.preventDefault();
     const { username } = this.state;
 
@@ -43,7 +57,7 @@ class Login extends Component {
     const NovoUser = { username };
 
     this.props.postUserRequest(NovoUser);
-    this.setState({ username: "" });
+    this.setState({ username: '' });
   };
 
   logar = () => {
@@ -71,12 +85,8 @@ class Login extends Component {
               </option>
             ))}
           </select>
-          <Link to={`/timeline`}>
-            <button
-              type="submit"
-              disabled={!this.state.userSelected}
-              onClick={this.logar}
-            >
+          <Link to="/timeline">
+            <button type="submit" disabled={!this.state.userSelected} onClick={this.logar}>
               Entrar
             </button>
           </Link>
@@ -87,18 +97,17 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-  users: state.users
+  users: state.users,
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      ...UsersActions
-    },
-    dispatch
-  );
+const mapDispatchToProps = dispatch => bindActionCreators(
+  {
+    ...UsersActions,
+  },
+  dispatch,
+);
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Login);

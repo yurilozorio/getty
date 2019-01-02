@@ -1,36 +1,56 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { Creators as UsersActions } from "../../store/ducks/users";
-import { Creators as TweetsActions } from "../../store/ducks/tweets";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Creators as UsersActions } from '../../store/ducks/users';
+import { Creators as TweetsActions } from '../../store/ducks/tweets';
 
-import twitterlogo from "../../assets/twitter.svg";
+import twitterlogo from '../../assets/twitter.svg';
 
-import Tweet from "../../components/tweet";
+import Tweet from '../../components/tweet';
 
-import { Container, Form, TweetList } from "./styles";
+import { Container, Form, TweetList } from './styles';
 
 class Timeline extends Component {
-  state = {
-    newTweet: ""
+  static propTypes = {
+    users: PropTypes.shape({
+      userLogado: PropTypes.shape({
+        id: PropTypes.number,
+        username: PropTypes.string,
+      }),
+    }).isRequired,
+    tweets: PropTypes.shape({
+      data: PropTypes.arrayOf(
+        PropTypes.shape({
+          map: PropTypes.func,
+        }),
+      ),
+    }).isRequired,
+    history: PropTypes.shape().isRequired,
+    getTweetsRequest: PropTypes.func.isRequired,
+    postTweetRequest: PropTypes.func.isRequired,
   };
+
+  state = {
+    newTweet: '',
+  };
+
+  componentWillMount() {
+    if (!this.props.users.userLogado.id) {
+      this.props.history.push('/');
+    }
+  }
 
   componentDidMount() {
     this.props.getTweetsRequest(this.props.users.userLogado.id);
   }
 
-  componentWillMount() {
-    if (!this.props.users.userLogado.id) {
-      this.props.history.push("/");
-    }
-  }
-
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     this.setState({ newTweet: event.target.value });
   };
 
-  handleNewTweet = async event => {
+  handleNewTweet = async (event) => {
     if (event.keyCode !== 13) return;
     event.preventDefault();
 
@@ -39,17 +59,18 @@ class Timeline extends Component {
     const tweet = {
       content: this.state.newTweet,
       likes: Math.floor(Math.random() * 100),
-      userId: this.props.users.userLogado.id
+      userId: this.props.users.userLogado.id,
     };
 
     this.props.postTweetRequest(tweet);
-    this.setState({ newTweet: "" });
+    this.setState({ newTweet: '' });
   };
+
   render() {
     return (
       <Container>
         <img height={24} src={twitterlogo} alt="GoTwitter" />
-        <h1>Tweets do {this.props.users.userLogado.username}</h1>
+        <h1>{`Tweets do ${this.props.users.userLogado.username}`}</h1>
         <Form>
           <textarea
             rows="1"
@@ -71,19 +92,18 @@ class Timeline extends Component {
 
 const mapStateToProps = state => ({
   users: state.users,
-  tweets: state.tweets
+  tweets: state.tweets,
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      ...UsersActions,
-      ...TweetsActions
-    },
-    dispatch
-  );
+const mapDispatchToProps = dispatch => bindActionCreators(
+  {
+    ...UsersActions,
+    ...TweetsActions,
+  },
+  dispatch,
+);
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Timeline);
