@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Creators as UsersActions } from '../../store/ducks/users';
 
+import Loading from '../../components/Loading';
+
 import twitterlogo from '../../assets/logo.svg';
 
 import { Container, Form } from './styles';
@@ -21,13 +23,14 @@ class Login extends Component {
           map: PropTypes.func,
         }),
       ),
+      loading: PropTypes.bool,
     }).isRequired,
     postUserRequest: PropTypes.func.isRequired,
-    getUserLogado: PropTypes.func.isRequired,
+    getLoggedUser: PropTypes.func.isRequired,
   };
 
   state = {
-    userLogado: {},
+    loggedUser: {},
     userSelected: false,
     username: '',
   };
@@ -44,7 +47,7 @@ class Login extends Component {
     if (event.target.value < 0) return;
     this.setState({ userSelected: true });
     this.setState({
-      userLogado: this.props.users.data.find(user => user.id === parseInt(event.target.value, 10)),
+      loggedUser: this.props.users.data.find(user => user.id === parseInt(event.target.value, 10)),
     });
   };
 
@@ -60,8 +63,8 @@ class Login extends Component {
     this.setState({ username: '' });
   };
 
-  logar = () => {
-    this.props.getUserLogado(this.state.userLogado);
+  login = () => {
+    this.props.getLoggedUser(this.state.loggedUser);
   };
 
   render() {
@@ -70,15 +73,15 @@ class Login extends Component {
         <img src={twitterlogo} alt="TwitterLogo" />
         <Form onSubmit={this.salvar}>
           <input
-            placeholder="Nome do Usuário"
+            placeholder="Username"
             value={this.state.username}
             onChange={this.handleInputChange}
           />
-          <button type="submit">Cadastrar</button>
+          <button type="submit">Register</button>
         </Form>
         <Form>
           <select onChange={this.handleSelectChange}>
-            <option value={-1}>Escolha o Usuário</option>
+            <option value={-1}>Select your user</option>
             {this.props.users.data.map(user => (
               <option key={user.id} value={user.id}>
                 {user.username}
@@ -86,11 +89,12 @@ class Login extends Component {
             ))}
           </select>
           <Link to="/timeline">
-            <button type="submit" disabled={!this.state.userSelected} onClick={this.logar}>
-              Entrar
+            <button type="submit" disabled={!this.state.userSelected} onClick={this.login}>
+              Log In
             </button>
           </Link>
         </Form>
+        {this.props.users.loading && <Loading />}
       </Container>
     );
   }

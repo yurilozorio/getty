@@ -14,7 +14,7 @@ export function* getTweets(action) {
 
     yield put(TweetsActions.getTweetsSuccess(response.data));
   } catch (err) {
-    yield put(ErrorsActions.setError('danger', 'Não foi possível obter os tweets.'));
+    yield put(ErrorsActions.setError('danger', 'Unable to get tweets.'));
   }
 }
 
@@ -24,7 +24,7 @@ export function* postTweet(action) {
 
     yield put(TweetsActions.postTweetSuccess(response.data));
   } catch (err) {
-    yield put(ErrorsActions.setError('danger', 'Não foi possível enviar tweet.'));
+    yield put(ErrorsActions.setError('danger', 'Unable to send tweet.'));
   }
 }
 
@@ -34,7 +34,7 @@ export function* putTweet(action) {
 
     yield put(TweetsActions.putTweetSuccess(response.data));
   } catch (err) {
-    yield put(ErrorsActions.setError('danger', 'Não foi possível alterar tweet.'));
+    yield put(ErrorsActions.setError('danger', 'Unable to edit tweet.'));
   }
 }
 
@@ -44,6 +44,6 @@ export function* delTweet(action) {
 
     yield put(TweetsActions.delTweetSuccess(action.payload.id));
   } catch (err) {
-    yield put(ErrorsActions.setError('danger', 'Não foi possível deletar tweet.'));
+    yield put(ErrorsActions.setError('danger', 'Unable to delete tweet.'));
   }
 }

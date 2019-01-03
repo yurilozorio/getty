@@ -33,11 +33,11 @@ class Tweet extends Component {
     userId: this.props.tweet.userId,
   };
 
-  deletar = () => {
+  delete = () => {
     this.props.delTweetRequest(this.state.id);
   };
 
-  editar = () => {
+  edit = () => {
     this.setState({ editMode: true });
   };
 
@@ -88,13 +88,13 @@ class Tweet extends Component {
             <img src={Like} alt="Like" />
             {this.state.likes}
           </button>
-          <button type="button" onClick={this.editar}>
+          <button type="button" onClick={this.edit}>
             <img src={Edit} alt="Edit" />
-            Editar
+            Edit
           </button>
-          <button type="button" onClick={this.deletar}>
+          <button type="button" onClick={this.delete}>
             <img src={Delete} alt="Delete" />
-            Excluir
+            Delete
           </button>
         </Buttons>
       </Container>

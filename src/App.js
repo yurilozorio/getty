@@ -1,15 +1,15 @@
-import React from "react";
-import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
+import React from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
-import "./config/reactotron";
-import store from "./store";
-import Routes from "./routes";
+import './config/reactotron';
+import store from './store';
+import Routes from './routes';
 
-import ErrorBox from "./components/errorBox";
+import ErrorBox from './components/ErrorBox';
 
-import GlobalStyles from "./styles/global";
-import { Wrapper, Container, Content } from "./styles/components";
+import GlobalStyles from './styles/global';
+import { Wrapper, Container, Content } from './styles/components';
 
 const App = () => (
   <Provider store={store}>

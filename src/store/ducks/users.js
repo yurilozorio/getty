@@ -7,7 +7,7 @@ export const Types = {
 };
 
 const INITIAL_STATE = {
-  userLogado: {},
+  loggedUser: {},
   data: [],
   loading: false,
 };
@@ -26,7 +26,7 @@ export default function users(state = INITIAL_STATE, action) {
       return { ...state, loading: false, data: newData };
     }
     case Types.GET_USER:
-      return { ...state, loading: true, userLogado: action.payload.user };
+      return { ...state, loading: false, loggedUser: action.payload.user };
     default:
       return state;
   }
@@ -52,7 +52,7 @@ export const Creators = {
     payload: { data },
   }),
 
-  getUserLogado: user => ({
+  getLoggedUser: user => ({
     type: Types.GET_USER,
     payload: { user },
   }),

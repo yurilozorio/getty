@@ -10,7 +10,7 @@ export function* getUsers() {
 
     yield put(UsersActions.getUsersSuccess(response.data));
   } catch (err) {
-    yield put(ErrorsActions.setError('danger', 'Não foi possível obter usuarios.'));
+    yield put(ErrorsActions.setError('danger', 'Unable to get users.'));
   }
 }
 
@@ -20,6 +20,6 @@ export function* postUser(action) {
 
     yield put(UsersActions.postUserSuccess(response.data));
   } catch (err) {
-    yield put(ErrorsActions.setError('danger', 'Não foi possível cadastrar usuario.'));
+    yield put(ErrorsActions.setError('danger', 'Unable to register users.'));
   }
 }

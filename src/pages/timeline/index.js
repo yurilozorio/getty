@@ -6,16 +6,18 @@ import { bindActionCreators } from 'redux';
 import { Creators as UsersActions } from '../../store/ducks/users';
 import { Creators as TweetsActions } from '../../store/ducks/tweets';
 
+import Loading from '../../components/Loading';
+
 import twitterlogo from '../../assets/twitter.svg';
 
-import Tweet from '../../components/tweet';
+import Tweet from '../../components/Tweet';
 
 import { Container, Form, TweetList } from './styles';
 
 class Timeline extends Component {
   static propTypes = {
     users: PropTypes.shape({
-      userLogado: PropTypes.shape({
+      loggedUser: PropTypes.shape({
         id: PropTypes.number,
         username: PropTypes.string,
       }),
@@ -26,6 +28,7 @@ class Timeline extends Component {
           map: PropTypes.func,
         }),
       ),
+      loading: PropTypes.bool,
     }).isRequired,
     history: PropTypes.shape().isRequired,
     getTweetsRequest: PropTypes.func.isRequired,
@@ -37,13 +40,13 @@ class Timeline extends Component {
   };
 
   componentWillMount() {
-    if (!this.props.users.userLogado.id) {
+    if (!this.props.users.loggedUser.id) {
       this.props.history.push('/');
     }
   }
 
   componentDidMount() {
-    this.props.getTweetsRequest(this.props.users.userLogado.id);
+    this.props.getTweetsRequest(this.props.users.loggedUser.id);
   }
 
   handleInputChange = (event) => {
@@ -59,7 +62,7 @@ class Timeline extends Component {
     const tweet = {
       content: this.state.newTweet,
       likes: Math.floor(Math.random() * 100),
-      userId: this.props.users.userLogado.id,
+      userId: this.props.users.loggedUser.id,
     };
 
     this.props.postTweetRequest(tweet);
@@ -70,16 +73,17 @@ class Timeline extends Component {
     return (
       <Container>
         <img height={24} src={twitterlogo} alt="GoTwitter" />
-        <h1>{`Tweets do ${this.props.users.userLogado.username}`}</h1>
+        <h1>{`Tweets of ${this.props.users.loggedUser.username}`}</h1>
         <Form>
           <textarea
             rows="1"
             value={this.state.newTweet}
             onChange={this.handleInputChange}
             onKeyDown={this.handleNewTweet}
-            placeholder="O que está acontecendo?"
+            placeholder="What's Happening?"
           />
         </Form>
+        {this.props.tweets.loading && <Loading />}
         <TweetList>
           {this.props.tweets.data.map(tweet => (
             <Tweet key={tweet.id} tweet={tweet} />
