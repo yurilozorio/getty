@@ -7,182 +7,44 @@
     {
       "username": "User 2",
       "id": 2
-    },
-    {
-      "username": "User 3",
-      "id": 3
-    },
-    {
-      "username": "User 4",
-      "id": 4
-    },
-    {
-      "username": "User 5",
-      "id": 5
-    },
-    {
-      "username": "User 6",
-      "id": 6
-    },
-    {
-      "username": "User 7",
-      "id": 7
-    },
-    {
-      "username": "User 8",
-      "id": 8
-    },
-    {
-      "username": "User 9",
-      "id": 9
-    },
-    {
-      "username": "teste",
-      "id": 10
-    },
-    {
-      "username": "rytwrtw",
-      "id": 11
-    },
-    {
-      "username": "teste",
-      "id": 12
-    },
-    {
-      "username": "fadsadsa",
-      "id": 13
-    },
-    {
-      "username": "dadsaas",
-      "id": 14
-    },
-    {
-      "username": "dasdas",
-      "id": 15
-    },
-    {
-      "username": "asda",
-      "id": 16
-    },
-    {
-      "username": "rese",
-      "id": 17
     }
   ],
   "tweets": [
     {
-      "content": "arroz2",
+      "content": "Hello World",
       "likes": 18,
-      "userId": 2,
-      "id": 13
+      "userId": 1,
+      "id": 1
     },
     {
-      "content": "a",
+      "content": "Test Tweet",
       "likes": 44,
-      "userId": 7,
-      "id": 14
+      "userId": 1,
+      "id": 2
     },
     {
-      "content": "asda",
-      "likes": 72,
-      "userId": 3,
-      "id": 15
-    },
-    {
-      "id": 18,
-      "content": "sgsdgsdgsewew",
-      "likes": 37,
-      "userId": 11
-    },
-    {
-      "content": "dasdasdsa",
+      "content": "Test",
       "likes": 34,
-      "userId": 10,
-      "id": 19
+      "userId": 1,
+      "id": 3
     },
     {
-      "content": "hvghjuvhj",
+      "content": "Hello World",
       "likes": 52,
-      "userId": 9,
-      "id": 20
+      "userId": 2,
+      "id": 4
     },
     {
-      "id": 21,
-      "content": "asdasfasasa",
-      "likes": 38,
-      "userId": 1
-    },
-    {
-      "content": "sasa",
-      "likes": 41,
-      "userId": 1,
-      "id": 22
-    },
-    {
-      "content": "teste",
-      "likes": 46,
-      "userId": 1,
-      "id": 23
-    },
-    {
-      "content": "tt",
-      "likes": 72,
-      "userId": 1,
-      "id": 24
-    },
-    {
-      "content": "eres",
-      "likes": 45,
-      "userId": 1,
-      "id": 25
-    },
-    {
-      "content": "gdgd",
-      "likes": 15,
-      "userId": 1,
-      "id": 26
-    },
-    {
-      "content": "sgsgsr",
-      "likes": 86,
-      "userId": 1,
-      "id": 27
-    },
-    {
-      "content": "fgetegre",
-      "likes": 67,
-      "userId": 1,
-      "id": 28
-    },
-    {
-      "content": "gege",
-      "likes": 54,
-      "userId": 1,
-      "id": 29
-    },
-    {
-      "content": "gege",
-      "likes": 46,
-      "userId": 1,
-      "id": 30
-    },
-    {
-      "content": "gegeg",
+      "content": "Test Tweet",
       "likes": 74,
-      "userId": 1,
-      "id": 31
+      "userId": 2,
+      "id": 5
     },
     {
-      "content": "rqa",
-      "likes": 31,
-      "userId": 3,
-      "id": 32
-    },
-    {
-      "content": "dsadas",
+      "content": "Test",
       "likes": 85,
-      "userId": 9,
-      "id": 33
+      "userId": 2,
+      "id": 6
     }
   ]
 }
